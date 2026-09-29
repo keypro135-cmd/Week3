@@ -18,20 +18,35 @@ export default function App() {
   }
 
   return (
-
     <View style={styles.container}>
 
       <Logo />
 
-      <TextInput placeholder="Enter your firstname" onChangeText={setFname}/>
-      <TextInput placeholder="Enter your lastname" onChangeText={setLname}/>
-      <TextInput placeholder="Enter your date of birth" onChangeText={setDob}/>
+      <TextInput
+        placeholder="Enter your firstname"
+        onChangeText={setFname}
+        style={styles.input}
+      />
 
-      <Text>Hello {fname} {lname}. You were born on {dob}</Text>
+      <TextInput
+        placeholder="Enter your lastname"
+        onChangeText={setLname}
+        style={styles.input}
+      />
+
+      <TextInput
+        placeholder="Enter your date of birth"
+        onChangeText={setDob}
+        style={styles.input}
+      />
+
+      <Text style={styles.text}>
+        Hello {fname} {lname}. You were born on {dob}
+      </Text>
 
       <Button title="SUBMIT" onPress={buttonClicked}/>
 
-      <Text style={styles.paragraph}>
+      <Text style={styles.text}>
         Change code in the editor and watch it change on your phone! Save to get a shareable url.
       </Text>
 
@@ -41,23 +56,24 @@ export default function App() {
 
     </View>
   );
-
 }
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
+    padding: 20,
     justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 8,
+    backgroundColor: '#fff',
   },
-
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 10,
+    marginVertical: 8,
   },
-
+  text: {
+    fontSize: 16,
+    marginVertical: 10,
+  },
 });
