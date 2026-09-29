@@ -12,9 +12,21 @@ export default function App() {
   const [fname, setFname] = useState("Joe");
   const [lname, setLname] = useState("Bloggs");
   const [dob, setDob] = useState("13 February 1991");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  function isValidEmail(value) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+  }
 
   function buttonClicked() {
-    alert("Hello " + fname + " " + lname + ". You were born on " + dob);
+    if (!isValidEmail(email)) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+    setEmailError("");
+    alert("Hello " + fname + " " + lname + ". Your Date of birth is " + dob + ". Email: " + email);
   }
 
   return (
@@ -39,6 +51,14 @@ export default function App() {
         onChangeText={setDob}
         style={styles.input}
       />
+
+      <TextInput
+        placeholder="Enter your email"
+        onChangeText={setEmail}
+        style={styles.input}
+      />
+
+      {emailError ? <Text style={{color: 'red'}}>{emailError}</Text> : null}
 
       <Text style={styles.text}>
         Hello {fname} {lname}. You were born on {dob}
